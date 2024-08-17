@@ -34,9 +34,34 @@
             height: 100%;
             overflow-y: auto;
         }
+        .theme-selector {
+            padding: 10px;
+            text-align: right;
+        }
+        /* Theme styles */
+        .theme-default {
+            background-color: white;
+            color: black;
+        }
+        .theme-dark {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+        }
+        .theme-light {
+            background-color: #f0f0f0;
+            color: #333;
+        }
     </style>
 </head>
 <body>
+    <div class="theme-selector">
+        <label for="theme-select">Choose a theme:</label>
+        <select id="theme-select">
+            <option value="default">Default</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+        </select>
+    </div>
     <div class="container">
         <div class="column">
             <textarea id="editor" placeholder="Enter your markdown here..."></textarea>
@@ -49,15 +74,24 @@
     <script>
         const editor = document.getElementById('editor');
         const preview = document.getElementById('preview');
+        const themeSelect = document.getElementById('theme-select');
 
         function updatePreview() {
             preview.innerHTML = marked.parse(editor.value);
         }
 
-        editor.addEventListener('input', updatePreview);
+        function applyTheme(theme) {
+            document.body.className = `theme-${theme}`;
+            editor.className = `theme-${theme}`;
+            preview.className = `theme-${theme}`;
+        }
 
-        // Initial update
+        editor.addEventListener('input', updatePreview);
+        themeSelect.addEventListener('change', (e) => applyTheme(e.target.value));
+
+        // Initial update and theme application
         updatePreview();
+        applyTheme(themeSelect.value);
     </script>
 </body>
 </html>
