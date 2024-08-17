@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Editor with Live Preview</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         body, html {
             margin: 0;
@@ -63,6 +64,20 @@
             color: #657b83;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
+        #download-pdf {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #download-pdf:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -82,6 +97,7 @@
         </div>
         <div class="column">
             <div id="preview"></div>
+            <button id="download-pdf">Download as PDF</button>
         </div>
     </div>
 
@@ -106,8 +122,15 @@
         applyTheme(themeSelect.value);
 
         // Set initial content
-        editor.value = "# Welcome to Markdown Editor\n\nThis is a live preview of your markdown.\n\n## Features\n\n- Real-time rendering\n- Multiple themes\n- Easy to use\n\nTry it out by editing this text!";
+        editor.value = "# Welcome to Markdown Editor\n\nThis is a live preview of your markdown.\n\n## Features\n\n- Real-time rendering\n- Multiple themes\n- Easy to use\n- Download as PDF\n\nTry it out by editing this text!";
         updatePreview();
+
+        // PDF download functionality
+        const downloadPdfButton = document.getElementById('download-pdf');
+        downloadPdfButton.addEventListener('click', () => {
+            const element = document.getElementById('preview');
+            html2pdf().from(element).save('markdown_preview.pdf');
+        });
     </script>
 </body>
 </html>
