@@ -114,7 +114,13 @@
             preview.className = `theme-${theme}`;
         }
 
+        function syncScroll() {
+            const percentage = editor.scrollTop / (editor.scrollHeight - editor.clientHeight);
+            preview.scrollTop = percentage * (preview.scrollHeight - preview.clientHeight);
+        }
+
         editor.addEventListener('input', updatePreview);
+        editor.addEventListener('scroll', syncScroll);
         themeSelect.addEventListener('change', (e) => applyTheme(e.target.value));
 
         // Initial update and theme application
@@ -122,7 +128,7 @@
         applyTheme(themeSelect.value);
 
         // Set initial content
-        editor.value = "# Welcome to Markdown Editor\n\nThis is a live preview of your markdown.\n\n## Features\n\n- Real-time rendering\n- Multiple themes\n- Easy to use\n- Download as PDF\n\nTry it out by editing this text!";
+        editor.value = "# Welcome to Markdown Editor\n\nThis is a live preview of your markdown.\n\n## Features\n\n- Real-time rendering\n- Multiple themes\n- Easy to use\n- Download as PDF\n- Synchronized scrolling\n\nTry it out by editing this text!";
         updatePreview();
 
         // PDF download functionality
