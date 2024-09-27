@@ -2,7 +2,9 @@
 
 A powerful, browser-based Markdown editor with real-time preview and PDF export functionality.
 
-![Markdown Editor Screenshot](https://via.placeholder.com/800x400.png?text=Markdown+Editor+Screenshot)
+See a [Live Demo](https://oakmgt.be/md2pdf)
+
+![Markdown Editor Screenshot](image.png)
 
 ## Features
 
@@ -27,8 +29,8 @@ Choose from a variety of document styles to suit your needs:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/markdown-editor.git
-   cd markdown-editor
+   git clone https://github.com/oakmgt/md2pdf.git
+   cd md2pdf
    ```
 
 2. Start a local server:
@@ -47,6 +49,17 @@ Choose from a variety of document styles to suit your needs:
 2. See the rendered HTML in real-time on the right.
 3. Choose a theme from the dropdown menu.
 4. Click "Download as PDF" to export your document.
+
+## Deploy to GitHub Pages
+
+1. Fork this repository.
+2. Go to the "Settings" tab.
+3. Scroll down to the "GitHub Pages" section.
+4. Select the "main" branch and click "Save".
+5. Your Markdown editor will be live at:
+   ```
+   https://<username>.github.io/mdf2pdf
+   ```
 
 ## Technologies Used
 
